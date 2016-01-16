@@ -1,20 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="84b3ba90-8376-455d-b1e7-adf728fcafcd" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/number.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/train-images-idx3-ubyte.gz" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/train-labels-idx1-ubyte.gz" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/learning.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/scopes/scope_settings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/NeuralNetworks.iml" afterPath="$PROJECT_DIR$/.idea/NeuralNetworks.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mnistExamples.png" afterPath="$PROJECT_DIR$/mnistExamples.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
+    <list default="true" id="84b3ba90-8376-455d-b1e7-adf728fcafcd" name="Default" comment="upload project&#10;">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/image_processing.py" afterPath="$PROJECT_DIR$/image_processing.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="NeuralNetworks.iws" />
@@ -44,8 +32,8 @@
       <file leaf-file-name="image_processing.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/image_processing.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.33333334" vertical-offset="2573" max-vertical-offset="2934">
-              <caret line="149" column="16" selection-start-line="149" selection-start-column="16" selection-end-line="149" selection-end-column="16" />
+            <state vertical-scroll-proportion="0.6055046" vertical-offset="54" max-vertical-offset="2934">
+              <caret line="14" column="20" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -373,7 +361,11 @@
       <created>1452869172668</created>
       <updated>1452869172668</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="upload project&#10;">
+      <created>1452870579352</created>
+      <updated>1452870579352</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -418,7 +410,8 @@
       <TodoPanelSettings />
     </option>
     <MESSAGE value="adding gitignore" />
-    <option name="LAST_COMMIT_MESSAGE" value="adding gitignore" />
+    <MESSAGE value="upload project&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="upload project&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -535,8 +528,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/image_processing.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33333334" vertical-offset="2573" max-vertical-offset="2934">
-          <caret line="149" column="16" selection-start-line="149" selection-start-column="16" selection-end-line="149" selection-end-column="16" />
+        <state vertical-scroll-proportion="0.6055046" vertical-offset="54" max-vertical-offset="2934">
+          <caret line="14" column="20" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>

@@ -1,0 +1,126 @@
+\hypertarget{namespacelearning}{\section{learning Namespace Reference}
+\label{namespacelearning}\index{learning@{learning}}
+}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{namespacelearning_a97ec8093e520fef4cdd5dcf7782e0ac5}{get\-\_\-labeled\-\_\-data}
+\item 
+def \hyperlink{namespacelearning_ac5e45eb63eb823208960432d076c7ed6}{view\-\_\-image}
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+string \hyperlink{namespacelearning_a551056cbe1aa3ac5fbe3b4cbd2f013ea}{\-\_\-\-\_\-author\-\_\-\-\_\-} = 'rbalda'
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{namespacelearning_a97ec8093e520fef4cdd5dcf7782e0ac5}{\index{learning@{learning}!get\-\_\-labeled\-\_\-data@{get\-\_\-labeled\-\_\-data}}
+\index{get\-\_\-labeled\-\_\-data@{get\-\_\-labeled\-\_\-data}!learning@{learning}}
+\subsubsection[{get\-\_\-labeled\-\_\-data}]{\setlength{\rightskip}{0pt plus 5cm}def learning.\-get\-\_\-labeled\-\_\-data (
+\begin{DoxyParamCaption}
+\item[{}]{imagefile, }
+\item[{}]{labelfile, }
+\item[{}]{picklename}
+\end{DoxyParamCaption}
+)}}\label{namespacelearning_a97ec8093e520fef4cdd5dcf7782e0ac5}
+\begin{DoxyVerb}Read input-vector (image) and target class (label, 0-9) and return
+it as list of tuples.
+
+:param imagefile:
+:param labelfile:
+:param picklename:
+:rtype : list.
+\end{DoxyVerb}
+ 
+\begin{DoxyCode}
+12 
+13 \textcolor{keyword}{def }\hyperlink{namespacelearning_a97ec8093e520fef4cdd5dcf7782e0ac5}{get\_labeled\_data}(imagefile, labelfile, picklename):
+14     \textcolor{stringliteral}{"""}
+15 \textcolor{stringliteral}{    Read input-vector (image) and target class (label, 0-9) and return}
+16 \textcolor{stringliteral}{    it as list of tuples.}
+17 \textcolor{stringliteral}{}
+18 \textcolor{stringliteral}{    :param imagefile:}
+19 \textcolor{stringliteral}{    :param labelfile:}
+20 \textcolor{stringliteral}{    :param picklename:}
+21 \textcolor{stringliteral}{    :rtype : list.}
+22 \textcolor{stringliteral}{    """}
+23     \textcolor{keywordflow}{if} os.path.isfile(\textcolor{stringliteral}{'%s.pickle'} % picklename):
+24         data = pickle.load(open(\textcolor{stringliteral}{'%s.pickle'} % picklename))
+25     \textcolor{keywordflow}{else}:
+26         \textcolor{comment}{# Open the images with gzip in read binary mode}
+27         images = gzip.open(imagefile, \textcolor{stringliteral}{'rb'})
+28         labels = gzip.open(labelfile, \textcolor{stringliteral}{'rb'})
+29 
+30         \textcolor{comment}{# Read the binary data}
+31 
+32         \textcolor{comment}{# We have to get big endian unsigned int. So we need '>I'}
+33 
+34         \textcolor{comment}{# Get metadata for images}
+35         images.read(4)  \textcolor{comment}{# skip the magic\_number}
+36         number\_of\_images = images.read(4)
+37         number\_of\_images = unpack(\textcolor{stringliteral}{'>I'}, number\_of\_images)[0]
+38         rows = images.read(4)
+39         rows = unpack(\textcolor{stringliteral}{'>I'}, rows)[0]
+40         cols = images.read(4)
+41         cols = unpack(\textcolor{stringliteral}{'>I'}, cols)[0]
+42 
+43         \textcolor{comment}{# Get metadata for labels}
+44         labels.read(4)  \textcolor{comment}{# skip the magic\_number}
+45         N = labels.read(4)
+46         N = unpack(\textcolor{stringliteral}{'>I'}, N)[0]
+47 
+48         \textcolor{keywordflow}{if} number\_of\_images != N:
+49             \textcolor{keywordflow}{raise} Exception(\textcolor{stringliteral}{'The number of labels did not match '}
+50                             \textcolor{stringliteral}{'the number of images.'})
+51 
+52         \textcolor{comment}{# Get the data}
+53         x = zeros((N, rows, cols), dtype=uint8)  \textcolor{comment}{# Initialize numpy array}
+54         y = zeros((N, 1), dtype=uint8)  \textcolor{comment}{# Initialize numpy array}
+55         \textcolor{keywordflow}{for} i \textcolor{keywordflow}{in} range(N):
+56             \textcolor{keywordflow}{if} i % 1000 == 0:
+57                 print(\textcolor{stringliteral}{"i: %i"} % i)
+58             \textcolor{keywordflow}{for} row \textcolor{keywordflow}{in} range(rows):
+59                 \textcolor{keywordflow}{for} col \textcolor{keywordflow}{in} range(cols):
+60                     tmp\_pixel = images.read(1)  \textcolor{comment}{# Just a single byte}
+61                     tmp\_pixel = unpack(\textcolor{stringliteral}{'>B'}, tmp\_pixel)[0]
+62                     x[i][row][col] = (float(tmp\_pixel) / 255)
+63             tmp\_label = labels.read(1)
+64             y[i] = unpack(\textcolor{stringliteral}{'>B'}, tmp\_label)[0]
+65         data = \{\textcolor{stringliteral}{'x'}: x, \textcolor{stringliteral}{'y'}: y, \textcolor{stringliteral}{'rows'}: rows, \textcolor{stringliteral}{'cols'}: cols\}
+66         pickle.dump(data, open(\textcolor{stringliteral}{"%s.pickle"} % picklename, \textcolor{stringliteral}{"wb"}))
+67     \textcolor{keywordflow}{return} data
+68 
+
+\end{DoxyCode}
+\hypertarget{namespacelearning_ac5e45eb63eb823208960432d076c7ed6}{\index{learning@{learning}!view\-\_\-image@{view\-\_\-image}}
+\index{view\-\_\-image@{view\-\_\-image}!learning@{learning}}
+\subsubsection[{view\-\_\-image}]{\setlength{\rightskip}{0pt plus 5cm}def learning.\-view\-\_\-image (
+\begin{DoxyParamCaption}
+\item[{}]{image, }
+\item[{}]{label = {\ttfamily \char`\"{}\char`\"{}}}
+\end{DoxyParamCaption}
+)}}\label{namespacelearning_ac5e45eb63eb823208960432d076c7ed6}
+\begin{DoxyVerb}View a single image.
+:param image:
+:param label:
+\end{DoxyVerb}
+ 
+\begin{DoxyCode}
+69 
+70 \textcolor{keyword}{def }\hyperlink{namespacelearning_ac5e45eb63eb823208960432d076c7ed6}{view\_image}(image, label=""):
+71     \textcolor{stringliteral}{"""}
+72 \textcolor{stringliteral}{    View a single image.}
+73 \textcolor{stringliteral}{    :param image:}
+74 \textcolor{stringliteral}{    :param label:}
+75 \textcolor{stringliteral}{    """}
+76     print(\textcolor{stringliteral}{"Label: %s"} % label)
+77     plt.imshow(image,cmap=plt.cm.gray)
+    plt.show()\end{DoxyCode}
+
+
+\subsection{Variable Documentation}
+\hypertarget{namespacelearning_a551056cbe1aa3ac5fbe3b4cbd2f013ea}{\index{learning@{learning}!\-\_\-\-\_\-author\-\_\-\-\_\-@{\-\_\-\-\_\-author\-\_\-\-\_\-}}
+\index{\-\_\-\-\_\-author\-\_\-\-\_\-@{\-\_\-\-\_\-author\-\_\-\-\_\-}!learning@{learning}}
+\subsubsection[{\-\_\-\-\_\-author\-\_\-\-\_\-}]{\setlength{\rightskip}{0pt plus 5cm}string learning.\-\_\-\-\_\-author\-\_\-\-\_\- = 'rbalda'}}\label{namespacelearning_a551056cbe1aa3ac5fbe3b4cbd2f013ea}

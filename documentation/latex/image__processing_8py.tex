@@ -1,0 +1,54 @@
+\hypertarget{image__processing_8py}{\section{/home/esteban/\-Documentos/\-Git\-Hub/neural\-\_\-ocr/image\-\_\-processing.py File Reference}
+\label{image__processing_8py}\index{/home/esteban/\-Documentos/\-Git\-Hub/neural\-\_\-ocr/image\-\_\-processing.\-py@{/home/esteban/\-Documentos/\-Git\-Hub/neural\-\_\-ocr/image\-\_\-processing.\-py}}
+}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{namespaceimage__processing}{image\-\_\-processing}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{namespaceimage__processing_af69c73451ea79177d7a6cdd4a6f4c6cd}{image\-\_\-processing.\-binarize\-\_\-and\-\_\-filter}
+\item 
+def \hyperlink{namespaceimage__processing_a86f61f82f2e9ab40fedca1122ed22bdf}{image\-\_\-processing.\-resize}
+\item 
+def \hyperlink{namespaceimage__processing_a949b0192d334a4251ed980527886c259}{image\-\_\-processing.\-crop\-\_\-image}
+\item 
+def \hyperlink{namespaceimage__processing_a39c4cc9ac706a7aa51faadb910c14f9a}{image\-\_\-processing.\-generate\-\_\-pattern}
+\item 
+def \hyperlink{namespaceimage__processing_a8fe5658053414146d9a4a36dd4a67f5d}{image\-\_\-processing.\-print\-\_\-patern}
+\item 
+def \hyperlink{namespaceimage__processing_a532c05461b7927b7dbf9fca472f4b076}{image\-\_\-processing.\-init\-\_\-neural\-\_\-network}
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{namespaceimage__processing_a4ef4515e8101fe5f0ef30c37d5f5b2e0}{image\-\_\-processing.\-W\-I\-N\-D\-O\-W\-\_\-\-S\-I\-Z\-E} = 20
+\item 
+int \hyperlink{namespaceimage__processing_ad193c6467fba4506cadbbe05d616fdb5}{image\-\_\-processing.\-R\-O\-W\-S} = 0
+\item 
+int \hyperlink{namespaceimage__processing_a1991b46c33bd0e75519fa6f394097ea5}{image\-\_\-processing.\-C\-O\-L\-U\-M\-N\-S} = 1
+\item 
+\hyperlink{namespaceimage__processing_a7573378d6f95349bc79dff9f973e57b0}{image\-\_\-processing.\-N\-\_\-\-I\-N\-P\-U\-T\-\_\-\-L\-A\-Y\-E\-R} = W\-I\-N\-D\-O\-W\-\_\-\-S\-I\-Z\-E$\ast$W\-I\-N\-D\-O\-W\-\_\-\-S\-I\-Z\-E
+\item 
+tuple \hyperlink{namespaceimage__processing_a39da60bdb74b1baaab3a1aa51d225d78}{image\-\_\-processing.\-N\-\_\-\-H\-I\-D\-D\-E\-N\-\_\-\-L\-A\-Y\-E\-R} = int(N\-\_\-\-I\-N\-P\-U\-T\-\_\-\-L\-A\-Y\-E\-R/5)
+\item 
+int \hyperlink{namespaceimage__processing_ad235eb949c209ec5de9c338d1f52b561}{image\-\_\-processing.\-O\-U\-T\-P\-U\-T\-\_\-\-L\-A\-Y\-E\-R} = 10
+\item 
+tuple \hyperlink{namespaceimage__processing_a7ca15ee314d3685ae47fe44112267e34}{image\-\_\-processing.\-input\-\_\-layer} = Linear\-Layer(N\-\_\-\-I\-N\-P\-U\-T\-\_\-\-L\-A\-Y\-E\-R)
+\item 
+tuple \hyperlink{namespaceimage__processing_a35b63551a480b64e520d2206511e29b2}{image\-\_\-processing.\-hidden\-\_\-layer} = Sigmoid\-Layer(N\-\_\-\-H\-I\-D\-D\-E\-N\-\_\-\-L\-A\-Y\-E\-R)
+\item 
+tuple \hyperlink{namespaceimage__processing_a551071d991a221c6b91ff3be54fef6fc}{image\-\_\-processing.\-output\-\_\-layer} = Softmax\-Layer(O\-U\-T\-P\-U\-T\-\_\-\-L\-A\-Y\-E\-R)
+\item 
+\hyperlink{namespaceimage__processing_ae62bdd803c67af980ad811bce63d0c81}{image\-\_\-processing.\-net} = None
+\item 
+tuple \hyperlink{namespaceimage__processing_a714ff6403e956fcb6206b9422e3811f6}{image\-\_\-processing.\-img} = cv2.\-imread(\char`\"{}number.\-png\char`\"{})
+\item 
+tuple \hyperlink{namespaceimage__processing_aeabf0234b61cf537988580f8015f7125}{image\-\_\-processing.\-ablob} = generate\-\_\-pattern(img)
+\item 
+tuple \hyperlink{namespaceimage__processing_abcbc4c75680adfe50c6b8cc8f7bb2ab6}{image\-\_\-processing.\-training}
+\item 
+list \hyperlink{namespaceimage__processing_a093201f0548bb6f33c3d9f8acb98e58a}{image\-\_\-processing.\-blob} = training\mbox{[}'x'\mbox{]}
+\end{DoxyCompactItemize}

@@ -1,20 +1,22 @@
+import os
 import cv2
+import cPickle as pickle
+
 
 __author__ = 'rbalda'
+from image_processing import crop_image, invert_color,resize, apply_threshold, generate_pattern
 from struct import unpack
 import gzip
 import matplotlib.pylab as plt
 from numpy import zeros, uint8
-import pylab
-import os.path
-import cPickle as pickle
 
-def get_labeled_data(imagefile, labelfile, picklename):
+
+def get_labeled_data(imagefile, labelfile,database):
     """Read input-vector (image) and target class (label, 0-9) and return
        it as list of tuples.
     """
-    if os.path.isfile('%s.pickle' % picklename):
-        data = pickle.load(open('%s.pickle' % picklename))
+    if os.path.isfile('%s.pickle' % database):
+        data = pickle.load(open('%s.pickle' % database))
     else:
         # Open the images with gzip in read binary mode
         images = gzip.open(imagefile, 'rb')
@@ -43,8 +45,10 @@ def get_labeled_data(imagefile, labelfile, picklename):
                             'the number of images.')
 
         # Get the data
-        x = zeros((N, rows, cols), dtype=uint8)  # Initialize numpy array
+        x = zeros((rows, cols), dtype=uint8)  # Initialize numpy array
         y = zeros((N, 1), dtype=uint8)  # Initialize numpy array
+
+        w = zeros((N,400),dtype=uint8)
         for i in range(N):
             if i % 1000 == 0:
                 print("i: %i" % i)
@@ -52,11 +56,14 @@ def get_labeled_data(imagefile, labelfile, picklename):
                 for col in range(cols):
                     tmp_pixel = images.read(1)  # Just a single byte
                     tmp_pixel = unpack('>B', tmp_pixel)[0]
-                    x[i][row][col] = (float(tmp_pixel) / 255)
+                    x[row][col] = (tmp_pixel)
+            z = resize(crop_image(invert_color(apply_threshold(x))))
+            w[i] = generate_pattern(z)
+            x = zeros((rows, cols), dtype=uint8)
             tmp_label = labels.read(1)
-            y[i] = unpack('>B', tmp_label)[0]
-        data = {'x': x, 'y': y, 'rows': rows, 'cols': cols}
-        pickle.dump(data, open("%s.pickle" % picklename, "wb"))
+            y[i]=unpack('>B',tmp_label)[0]
+        data = {'data': w, 'label': y}
+        pickle.dump(data, open("%s.pickle" % database, "wb"))
     return data
 
 

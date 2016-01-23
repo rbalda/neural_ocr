@@ -1,3 +1,4 @@
+from array import array
 import cv2
 import numpy as np
 import sys
@@ -8,6 +9,7 @@ from pybrain.utilities import percentError
 from pybrain.supervised.trainers import BackpropTrainer
 import learning
 
+"Neural network properties"
 WINDOW_SIZE = 20
 ROWS = 0
 COLUMNS = 1
@@ -23,31 +25,35 @@ net = None
 
 
 def binarize_and_filter(img):
-    out = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
-    out = cv2.GaussianBlur(out,(3,3),0)
-    ret,out = cv2.threshold(out,200,255,cv2.THRESH_BINARY)
+    out = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    out = cv2.GaussianBlur(out, (3, 3), 0)
+    ret, out = cv2.threshold(out, 200, 255, cv2.THRESH_BINARY)
     return out
 
 
 def resize(img):
-    out = cv2.resize(img,(WINDOW_SIZE,WINDOW_SIZE),interpolation=cv2.INTER_CUBIC)
+    out = cv2.resize(img, (WINDOW_SIZE, WINDOW_SIZE), interpolation=cv2.INTER_CUBIC)
     return out
 
 def crop_image(input_img):
+    """
+
+    :type input_img: object
+    """
     img_height = input_img.shape[ROWS]
     img_width = input_img.shape[COLUMNS]
-    tly=None
-    tlx=None
-    bry=None
+    tly = None
+    tlx = None
+    bry = None
     brx = None
-    width=None
+    width = None
     height = None
 
     flag = 0
     """"margen superior"""
-    for i in range(0,img_height):
-        for j in range(0,img_width):
-            if input_img[i][j]==0:
+    for i in range(0, img_height):
+        for j in range(0, img_width):
+            if input_img[i][j] == 0:
                 flag = 1
                 tly = i
                 break
@@ -56,9 +62,9 @@ def crop_image(input_img):
             break
 
     """margen inferior"""
-    for i in range(img_height-1,0,-1):
-        for j in range(0,img_width):
-            if input_img[i][j]==0:
+    for i in range(img_height-1, 0, -1):
+        for j in range(0, img_width):
+            if input_img[i][j] == 0:
                 flag = 1
                 bry = i
                 break
@@ -67,41 +73,44 @@ def crop_image(input_img):
             break
 
     """margen izquierdo"""
-    for j in range(0,img_width):
-        for i in range(0,img_height-1):
-            if input_img[i][j]==0:
-                flag=1
+    for j in range(0, img_width):
+        for i in range(0, img_height-1):
+            if input_img[i][j] == 0:
+                flag = 1
                 tlx = j
                 break
-        if flag==1:
+        if flag == 1:
             flag = 0
             break
 
-
     """margen derecho"""
-    for j in range(img_width-1,0,-1):
-        for i in range(0,img_height-1):
-            if input_img[i,j]==0:
+    for j in range(img_width-1, 0, -1):
+        for i in range(0, img_height-1):
+            if input_img[i, j] == 0:
                 flag = 1
                 brx = j
                 break
-        if flag==1:
+        if flag == 1:
             flag = 0
             break
 
     width = brx - tlx
     height = bry - tly
-    croped = input_img[tly:tly+height,tlx:tlx+width]
+    croped = input_img[tly:tly+height, tlx:tlx+width]
     return croped
 
 
 
 def generate_pattern(img):
+    """
+    Image used in content
+    :type img: object
+    """
     pixel_array = []
     i = 0
-    for x in range(0,WINDOW_SIZE):
-        for y in range(0,WINDOW_SIZE):
-            if img[x,y]==255:
+    for x in range(0, WINDOW_SIZE):
+        for y in range(0, WINDOW_SIZE):
+            if img[x, y] == 255:
                 pixel_array.append(1)
             else:
                 pixel_array.append(0)
@@ -111,14 +120,18 @@ def generate_pattern(img):
 
 
 def print_patern(x):
-    for i in range(0,WINDOW_SIZE*WINDOW_SIZE):
+    """
+
+    :rtype x: object
+    """
+    for i in range(0, WINDOW_SIZE*WINDOW_SIZE):
         if i % WINDOW_SIZE == 0:
-            print "\n"
+            print("\n")
         else:
             if x[i] == 1:
-                print "x"
+                print("x")
             else:
-                print "-"
+                print("-")
 
 
 def init_neural_network():
@@ -126,8 +139,8 @@ def init_neural_network():
     neural_net.addInputModule(input_layer)
     neural_net.addModule(hidden_layer)
     neural_net.addOutputModule(output_layer)
-    connect1 = FullConnection(input_layer,hidden_layer)
-    connect2 = FullConnection(hidden_layer,output_layer)
+    connect1 = FullConnection(input_layer, hidden_layer)
+    connect2 = FullConnection(hidden_layer, output_layer)
     neural_net.addConnection(connect1)
     neural_net.addConnection(connect2)
     neural_net.sortModules()
@@ -147,7 +160,7 @@ ablob = generate_pattern(img)
 training = learning.get_labeled_data('train-images-idx3-ubyte.gz',
                                 'train-labels-idx1-ubyte.gz', 'training')
 blob = training['x'][9]
-print blob.shape
+print(blob.shape)
 learning.view_image(ablob)
 # print net
 # print_patern(a)

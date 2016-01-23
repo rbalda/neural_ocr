@@ -10,8 +10,14 @@ import os.path
 import cPickle as pickle
 
 def get_labeled_data(imagefile, labelfile, picklename):
-    """Read input-vector (image) and target class (label, 0-9) and return
-       it as list of tuples.
+    """
+    Read input-vector (image) and target class (label, 0-9) and return
+    it as list of tuples.
+
+    :param imagefile:
+    :param labelfile:
+    :param picklename:
+    :rtype : list.
     """
     if os.path.isfile('%s.pickle' % picklename):
         data = pickle.load(open('%s.pickle' % picklename))
@@ -61,7 +67,11 @@ def get_labeled_data(imagefile, labelfile, picklename):
 
 
 def view_image(image, label=""):
-    """View a single image."""
+    """
+    View a single image.
+    :param image:
+    :param label:
+    """
     print("Label: %s" % label)
     plt.imshow(image,cmap=plt.cm.gray)
     plt.show()

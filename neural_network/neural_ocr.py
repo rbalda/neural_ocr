@@ -9,7 +9,18 @@ from pybrain.structure import *
 
 from image_processing import WINDOW_SIZE,OUTPUT_LAYER
 import cPickle as pickle
+"""
+This module contains the main process to neural network ocr we include the training
+and test processing and the process to generate a file wich contains the training data and
+test data of neural network and the resultant weights of the training process.
 
+this code is based in Martin Thoma blog
+https://martin-thoma.com/classify-mnist-with-pybrain/#tocAnchor-1-1
+Pybrain Tutorial
+http://pybrain.org/docs/tutorial/fnn.html
+
+
+"""
 
 N_INPUT_LAYER = WINDOW_SIZE * WINDOW_SIZE
 N_HIDDEN_LAYER = int(N_INPUT_LAYER/2)
@@ -109,20 +120,20 @@ def predict(file):
 
 
 
-if __name__=='__main__':
-    # nn = training_and_testing()
-    # save_network(nn)
-    nn = generate_network_from_file(network_data_folder)
-    img = cv2.imread('../NeuralOCR/media/20160125114630.jpg')
-    img2 = img
-    img = binarize_and_filter(img)
-    imgR = crop_image(img)
-    imgR1 = resize(imgR)
-    cv2.imshow("7 normalizado",imgR1)
-    cv2.imshow("7 normal",img2)
-    X = generate_pattern(imgR1)
-    predict = nn.activate(X)
-    nn.activate(X)
-    p = argmax(predict,axis=0)
-    print p
-    cv2.waitKey()
+# if __name__=='__main__':
+#     # nn = training_and_testing()
+#     # save_network(nn)
+#     nn = generate_network_from_file(network_data_folder)
+#     img = cv2.imread('../NeuralOCR/media/20160125114630.jpg')
+#     img2 = img
+#     img = binarize_and_filter(img)
+#     imgR = crop_image(img)
+#     imgR1 = resize(imgR)
+#     cv2.imshow("7 normalizado",imgR1)
+#     cv2.imshow("7 normal",img2)
+#     X = generate_pattern(imgR1)
+#     predict = nn.activate(X)
+#     nn.activate(X)
+#     p = argmax(predict,axis=0)
+#     print p
+#     cv2.waitKey()

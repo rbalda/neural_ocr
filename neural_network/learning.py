@@ -1,7 +1,15 @@
 import cPickle as pickle
 
 import os
+"""
+This module contains the methods for get and parsing data from mnist datase
+originally the mnist dataset has different dimensions that we used in the system
+because we have needed to adapt it
 
+This code is based in a Martin Thoma tutorial
+https://martin-thoma.com/classify-mnist-with-pybrain/#tocAnchor-1-1
+
+"""
 
 __author__ = 'rbalda'
 from image_processing import crop_image, invert_color,resize, apply_threshold, generate_pattern

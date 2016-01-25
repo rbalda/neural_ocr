@@ -1,7 +1,9 @@
 """
-This module contains all the preprocess methods to normalize
+This module contains all preprocessing methods to normalize
 the image to be used as input in the system
 
+This code is based in Nithin Raj code wrote in c++
+http://www.nithinrajs.in/ocr-using-artificial-neural-network-opencv-part-2-preprocessing/
 """
 
 

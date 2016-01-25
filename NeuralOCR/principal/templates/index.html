@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html" charset="UTF-8">
+    <title>Neural Network based OCR</title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js"></script>
+    <!--[if IE]><script type="text/javascript" src="excanvas.js"></script><![endif]-->
+    <script type="text/javascript" src="static/js/scriptcanvas.js"></script>
+    <!-- Bootstrap Core CSS -->
+    <link href="static/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- MetisMenu CSS -->
+    <link href="static/bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="static/dist/css/sb-admin-2.css" rel="stylesheet">
+    <!-- Custom Fonts -->
+    <link href="static/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="static/css/circle.css">
+  </head>
+  <body onload="initialize()">
+    <div id="container">
+      <div class="row">
+        <div class="col-md-6 col-lg-6 "    style="margin-top: 1%;" >
+          <div class="panel panel-primary">
+              <div class="panel-heading">Drawing panel</div>
+              <div id="canvasDiv"></div>
+              <div class="panel-footer">
+                <button id="clear" type="button" class="btn btn-primary">Clean</button>
+                <button id="prediccion" type="button" class="btn btn-success">Predict</button>
+                <button type="button" class="btn btn-warning">Training</button>
+              </div>
+          </div>
+          <div class="panel panel-green">
+              <div class="panel-heading">
+                  Predicted Digit
+              </div>
+              <div class="panel-body text-center">
+                  <strong>
+                    <p style="font-size: 900%;" id="digit_text">
+                      *
+                    </p>
+                  </strong>
+              </div>
+              <div class="panel-footer">
+                  
+              </div>
+          </div>               
+        </div>
+
+        <div class="col-md-6 col-lg-6">
+          <div class="row" style="margin-top: 2%;">
+            <div class="col-lg-3 ">
+              <div class="panel panel-default">
+                  <div class="panel-heading"> ZERO </div>
+                  <div class="panel-body">
+                    <div class="c100 p0">
+                      <span>0%</span>
+                      <div class="slice">
+                        <div class="bar"></div>
+                        <div class="fill"></div>
+                      </div>              
+                    </div>  
+                  </div>
+              </div>          
+            </div>  
+            <div class="col-lg-3">
+              <div class="panel panel-default">
+                  <div class="panel-heading">
+                      ONE
+                  </div>
+                  <div class="panel-body">
+                    <div class="c100 p0 green">
+                      <span>0%</span>
+                      <div class="slice">
+                        <div class="bar"></div>
+                        <div class="fill"></div>
+                      </div>              
+                    </div>  
+                  </div>
+              </div>          
+            </div>  
+            <div class="col-lg-3">
+              <div class="panel panel-default">
+                  <div class="panel-heading">
+                      TWO
+                  </div>
+                  <div class="panel-body">
+                    <div class="c100 p0">
+                      <span>0%</span>
+                      <div class="slice">
+                        <div class="bar"></div>
+                        <div class="fill"></div>
+                      </div>              
+                    </div>  
+                  </div>
+              </div>          
+            </div>
+            <div class="col-lg-3">
+              <div class="panel panel-default">
+                  <div class="panel-heading">
+                      THREE
+                  </div>
+                  <div class="panel-body">
+                    <div class="c100 p0 green">
+                      <span>0%</span>
+                      <div class="slice">
+                        <div class="bar"></div>
+                        <div class="fill"></div>
+                      </div>              
+                    </div>  
+                  </div>
+              </div>          
+            </div>   
+            <div class="col-lg-3">
+              <div class="panel panel-default">
+                  <div class="panel-heading">
+                      FOUR
+                  </div>
+                  <div class="panel-body">
+                    <div class="c100 p0">
+                      <span>0%</span>
+                      <div class="slice">
+                        <div class="bar"></div>
+                        <div class="fill"></div>
+                      </div>              
+                    </div>  
+                  </div>
+              </div>          
+            </div> 
+            <div class="col-lg-3">
+              <div class="panel panel-default">
+                  <div class="panel-heading">
+                      FIVE
+                  </div>
+                  <div class="panel-body">
+                    <div class="c100 p0 green">
+                      <span>0%</span>
+                      <div class="slice">
+                        <div class="bar"></div>
+                        <div class="fill"></div>
+                      </div>              
+                    </div>  
+                  </div>
+              </div>          
+            </div>
+            <div class="col-lg-3">
+              <div class="panel panel-default">
+                  <div class="panel-heading">
+                      SIX
+                  </div>
+                  <div class="panel-body">
+                    <div class="c100 p0">
+                      <span>0%</span>
+                      <div class="slice">
+                        <div class="bar"></div>
+                        <div class="fill"></div>
+                      </div>              
+                    </div>  
+                  </div>
+              </div>          
+            </div> 
+            <div class="col-lg-3">
+              <div class="panel panel-default">
+                  <div class="panel-heading">
+                      SEVEN
+                  </div>
+                  <div class="panel-body">
+                    <div class="c100 p0 green">
+                      <span>0%</span>
+                      <div class="slice">
+                        <div class="bar"></div>
+                        <div class="fill"></div>
+                      </div>              
+                    </div>  
+                  </div>
+              </div>          
+            </div> 
+            <div class="col-lg-3">
+              <div class="panel panel-default">
+                  <div class="panel-heading">
+                      EIGHT
+                  </div>
+                  <div class="panel-body">
+                    <div class="c100 p0">
+                      <span>0%</span>
+                      <div class="slice">
+                        <div class="bar"></div>
+                        <div class="fill"></div>
+                      </div>              
+                    </div>  
+                  </div>
+              </div>          
+            </div> 
+            <div class="col-lg-3">
+              <div class="panel panel-default">
+                  <div class="panel-heading">
+                      NINE
+                  </div>
+                  <div class="panel-body">
+                    <div class="c100 p0 green">
+                      <span>0%</span>
+                      <div class="slice">
+                        <div class="bar"></div>
+                        <div class="fill"></div>
+                      </div>              
+                    </div>  
+                  </div>
+              </div>          
+            </div>                                     
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer>
+    </footer>
+  </body>
+</html>
+
+<!--
+  Fuentes:
+  http://www.cssscript.com/pure-css-circular-percentage-bar/
+  http://www.williammalone.com/articles/create-html5-canvas-javascript-drawing-app/
+  http://startbootstrap.com/template-overviews/sb-admin-2/
+-->

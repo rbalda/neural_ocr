@@ -1,6 +1,6 @@
-import os
-import cv2
 import cPickle as pickle
+
+import os
 
 
 __author__ = 'rbalda'

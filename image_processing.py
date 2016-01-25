@@ -1,11 +1,8 @@
 from array import array
 import cv2
-import cv
-import numpy as np
-import sys
+
 from numpy import *
 
-import learning
 
 "Neural network properties"
 WINDOW_SIZE = 20

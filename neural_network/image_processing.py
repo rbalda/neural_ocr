@@ -1,9 +1,16 @@
+"""
+This module contains all the preprocess methods to normalize
+the image to be used as input in the system
+
+"""
+
+
 import cv2
 
 from numpy import *
 
 
-"Neural network properties"
+"""Standard image properties"""
 WINDOW_SIZE = 20
 ROWS = 0
 COLUMNS = 1
@@ -11,17 +18,27 @@ OUTPUT_LAYER = 10
 
 
 
-
+"""
+Binarize an blur process to reduce noise
+"""
 def binarize_and_filter(img):
     out = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
     out = cv2.GaussianBlur(out,(3,3),0)
     ret,out = cv2.threshold(out,125,255,cv2.THRESH_BINARY)
     return out
 
+
+"""
+Process to apply threshold grayscale images
+"""
 def apply_threshold(img):
     ret,out = cv2.threshold(img,200,255,cv2.THRESH_BINARY)
     return out
 
+
+"""
+Resize the images to a 20X20 grid
+"""
 def resize(img):
     try:
         out = cv2.resize(img,(WINDOW_SIZE,WINDOW_SIZE),interpolation=cv2.INTER_CUBIC)
@@ -29,12 +46,21 @@ def resize(img):
         out = zeros((20, 20), dtype=uint8)
     return out
 
+
+"""
+Convert the whites to black and viceversa
+"""
 def invert_color(img):
     for i in range(img.shape[ROWS]):
         for j in range(img.shape[COLUMNS]):
             img[i][j] = 255 - img[i][j]
     return img
 
+
+
+"""
+crop the image if is needed
+"""
 def crop_image(input_img):
     """
 
@@ -100,7 +126,9 @@ def crop_image(input_img):
     return croped
 
 
-
+"""
+Generate the final input vector to the  system
+"""
 def generate_pattern(img):
     """
     Image used in content

@@ -121,6 +121,18 @@ function redraw(){
 //    document.body.removeChild(dlLink);
 //}
 
+function round(number) {
+    return Math.ceil(number*100)
+}
+
+function append_percent(number){
+    return number+"%";
+}
+
+function append_class(number){
+    return "p"+number
+}
+
 function prediccion(){
     var img = document.getElementById("canvas");
     var data = img.toDataURL();
@@ -132,7 +144,31 @@ function prediccion(){
         contentType: 'application/json',
         success: function(data){
             $("#digit_text").text(data.prediccion) ;
+            var lst = JSON.parse(data.porcentajes);
+            $("#zero_graph_title").text(append_percent(round(lst[0])));
+            $("#zero_graph").addClass(append_class(round(lst[0])));
+            $("#one_graph_title").text(append_percent(round(lst[1])));
+            $("#one_graph").addClass(append_class(round(lst[1])));
+            $("#two_graph_title").text(append_percent(round(lst[2])));
+            $("#two_graph").addClass(append_class(round(lst[2])));
+            $("#three_graph_title").text(append_percent(round(lst[3])));
+            $("#three_graph").addClass(append_class(round(lst[3])));
+            $("#four_graph_title").text(append_percent(round(lst[4])));
+            $("#four_graph").addClass(append_class(round(lst[4])));
+            $("#five_graph_title").text(append_percent(round(lst[5])));
+            $("#five_graph").addClass(append_class(round(lst[5])));
+            $("#six_graph_title").text(append_percent(round(lst[6])));
+            $("#six_graph").addClass(append_class(round(lst[6])));
+            $("#seven_graph_title").text(append_percent(round(lst[7])));
+            $("#seven_graph").addClass(append_class(round(lst[7])));
+            $("#eight_graph_title").text(append_percent(round(lst[8])));
+            $("#eight_graph").addClass(append_class(round(lst[8])));
+            $("#nine_graph_title").text(append_percent(round(lst[9])));
+            $("#nine_graph").addClass(append_class(round(lst[9])));
+
         }
     });
 }
+
+
 

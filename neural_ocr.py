@@ -1,19 +1,19 @@
-import cv2
-from numpy import argmax
 from pybrain.datasets import ClassificationDataSet
 from pybrain.supervised import BackpropTrainer
 from pybrain.utilities import percentError
 import learning
+import cv2
+from image_processing import *
 
 __author__ = 'rbalda'
 from pybrain.structure import *
 
-from image_processing import WINDOW_SIZE,OUTPUT_LAYER, binarize_and_filter, crop_image, resize, generate_pattern
+from image_processing import WINDOW_SIZE,OUTPUT_LAYER
 import cPickle as pickle
 
 
-N_INPUT_LAYER = WINDOW_SIZE*WINDOW_SIZE
-N_HIDDEN_LAYER = int(N_INPUT_LAYER/5)
+N_INPUT_LAYER = WINDOW_SIZE * WINDOW_SIZE
+N_HIDDEN_LAYER = 1000
 input_layer = LinearLayer(N_INPUT_LAYER)
 hidden_layer = SigmoidLayer(N_HIDDEN_LAYER)
 output_layer = SoftmaxLayer(OUTPUT_LAYER)
@@ -92,8 +92,10 @@ def generate_network_from_file(name):
 
 
 if __name__=='__main__':
+    # nn = training_and_testing()
+    # save_network(nn)
     nn = generate_network_from_file('network_data.pickle')
-    img = cv2.imread('7.png')
+    img = cv2.imread('10.png')
     img2 = img
     img = binarize_and_filter(img)
     imgR = crop_image(img)

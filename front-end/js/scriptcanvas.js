@@ -55,6 +55,7 @@ function initialize(){
 	});
 
 	$('#prediccion').mousedown(function(e){
+
 		prediccion();
 	});
 

@@ -7,7 +7,6 @@ from neural_network import neural_ocr
 
 # Create your views here.
 from django.views.decorators.csrf import csrf_exempt
-from neural_network.neural_ocr import predict
 import re
 
 default_folder = "media"

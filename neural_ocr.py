@@ -92,10 +92,10 @@ def generate_network_from_file(name):
 
 
 if __name__=='__main__':
-    # nn = training_and_testing()
-    # save_network(nn)
+    nn = training_and_testing()
+    save_network(nn)
     nn = generate_network_from_file('network_data.pickle')
-    img = cv2.imread('10.png')
+    img = cv2.imread('number.png')
     img2 = img
     img = binarize_and_filter(img)
     imgR = crop_image(img)

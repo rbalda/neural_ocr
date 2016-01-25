@@ -68,7 +68,11 @@ def get_labeled_data(imagefile, labelfile,database):
 
 
 def view_image(image, label=""):
-    """View a single image."""
+    """
+    View a single image.
+    :param image:
+    :param label:
+    """
     print("Label: %s" % label)
     plt.imshow(image,cmap=plt.cm.gray)
     plt.show()

@@ -13,7 +13,7 @@ import cPickle as pickle
 
 
 N_INPUT_LAYER = WINDOW_SIZE * WINDOW_SIZE
-N_HIDDEN_LAYER = 1000
+N_HIDDEN_LAYER = int(N_INPUT_LAYER/2)
 input_layer = LinearLayer(N_INPUT_LAYER)
 hidden_layer = SigmoidLayer(N_HIDDEN_LAYER)
 output_layer = SoftmaxLayer(OUTPUT_LAYER)
@@ -95,7 +95,7 @@ if __name__=='__main__':
     # nn = training_and_testing()
     # save_network(nn)
     nn = generate_network_from_file('network_data.pickle')
-    img = cv2.imread('10.png')
+    img = cv2.imread('11.png')
     img2 = img
     img = binarize_and_filter(img)
     imgR = crop_image(img)

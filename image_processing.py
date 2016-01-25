@@ -1,4 +1,3 @@
-from array import array
 import cv2
 
 from numpy import *
@@ -133,63 +132,6 @@ def print_patern(x):
 
 
 
-def init_neural_network():
-    neural_net = FeedForwardNetwork()
-    neural_net.addInputModule(input_layer)
-    neural_net.addModule(hidden_layer)
-    neural_net.addOutputModule(output_layer)
-    connect1 = FullConnection(input_layer, hidden_layer)
-    connect2 = FullConnection(hidden_layer, output_layer)
-    neural_net.addConnection(connect1)
-    neural_net.addConnection(connect2)
-    neural_net.sortModules()
-    return neural_net
 
 
 
-
-
-img = cv2.imread("number.png")
-# cv2.imshow("normal",img)
-img = binarize_and_filter(img)
-img = crop_image(img)
-img = resize(img)
-ablob = generate_pattern(img)
-# net = init_neural_network()
-training = learning.get_labeled_data('train-images-idx3-ubyte.gz',
-                                'train-labels-idx1-ubyte.gz', 'training')
-blob = training['x'][9]
-print(blob.shape)
-learning.view_image(ablob)
-# print net
-# print_patern(a)
-# cv2.imshow("hello",img)
-# cv2.imshow("blob",blob)
-# cv2.waitKey()
-
-
-
-#
-#
-#
-# img = cv2.imread("number.png")
-# # cv2.imshow("normal",img)
-# img = binarize_and_filter(img)
-# img = crop_image(img)
-# img = resize(img)
-# ablob = generate_pattern(img)
-# # net = init_neural_network()
-#
-#
-# blob = apply_threshold(blob)
-# print blob
-# print label
-#
-# #learning.view_image(blob,label)
-#
-# # print net
-# # print_patern(a)
-# cv2.imshow("hello",img)
-#
-#
-# #binarize_and_filter(img)

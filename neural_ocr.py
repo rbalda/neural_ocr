@@ -12,7 +12,7 @@ from image_processing import WINDOW_SIZE,OUTPUT_LAYER
 import cPickle as pickle
 
 
-N_INPUT_LAYER = WINDOW_SIZE*WINDOW_SIZE
+N_INPUT_LAYER = WINDOW_SIZE * WINDOW_SIZE
 N_HIDDEN_LAYER = 1000
 input_layer = LinearLayer(N_INPUT_LAYER)
 hidden_layer = SigmoidLayer(N_HIDDEN_LAYER)
@@ -92,19 +92,19 @@ def generate_network_from_file(name):
 
 
 if __name__=='__main__':
-    nn = training_and_testing()
-    save_network(nn)
-    # nn = generate_network_from_file('network_data.pickle')
-    # img = cv2.imread('11.png')
-    # img2 = img
-    # img = binarize_and_filter(img)
-    # imgR = crop_image(img)
-    # imgR1 = resize(imgR)
-    # cv2.imshow("7 normalizado",imgR1)
-    # cv2.imshow("7 normal",img2)
-    # X = generate_pattern(imgR1)
-    # predict = nn.activate(X)
-    # nn.activate(X)
-    # p = argmax(predict,axis=0)
-    # print p
-    # cv2.waitKey()
+    # nn = training_and_testing()
+    # save_network(nn)
+    nn = generate_network_from_file('network_data.pickle')
+    img = cv2.imread('10.png')
+    img2 = img
+    img = binarize_and_filter(img)
+    imgR = crop_image(img)
+    imgR1 = resize(imgR)
+    cv2.imshow("7 normalizado",imgR1)
+    cv2.imshow("7 normal",img2)
+    X = generate_pattern(imgR1)
+    predict = nn.activate(X)
+    nn.activate(X)
+    p = argmax(predict,axis=0)
+    print p
+    cv2.waitKey()

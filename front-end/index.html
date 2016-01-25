@@ -22,15 +22,16 @@
     <![endif]-->
     <link rel="stylesheet" href="css/circle.css">
   </head>
-  <body>
+  <body onload="initialize()">
     <div id="container">
       <div class="row">
-        <div class="col-md-6 col-lg-6" >
+        <div class="col-md-6 col-lg-6 "    style="margin-top: 1%;" >
           <div class="panel panel-primary">
               <div class="panel-heading">Drawing panel</div>
               <div id="canvasDiv"></div>
               <div class="panel-footer">
-                <button type="button" class="btn btn-success">Predicción</button>
+                <button id="clear" type="button" class="btn btn-primary">Limpiar</button>
+                <button id="prediccion" type="button" class="btn btn-success">Predicción</button>
                 <button type="button" class="btn btn-warning">Entrenamiento</button>
               </div>
           </div>
@@ -40,23 +41,25 @@
               </div>
               <div class="panel-body text-center">
                   <strong>
-                    <p style="font-size: 950%;">1</p>
+                    <p style="font-size: 900%;">
+                      *
+                    </p>
                   </strong>
               </div>
               <div class="panel-footer">
-                  UNO
+                  
               </div>
           </div>               
         </div>
 
         <div class="col-md-6 col-lg-6">
-          <div class="row">
+          <div class="row" style="margin-top: 2%;">
             <div class="col-lg-3 ">
               <div class="panel panel-default">
                   <div class="panel-heading"> CERO </div>
                   <div class="panel-body">
-                    <div class="c100 p25">
-                      <span>25%</span>
+                    <div class="c100 p0">
+                      <span>0%</span>
                       <div class="slice">
                         <div class="bar"></div>
                         <div class="fill"></div>
@@ -71,8 +74,8 @@
                       UNO
                   </div>
                   <div class="panel-body">
-                    <div class="c100 p25 green">
-                      <span>25%</span>
+                    <div class="c100 p0 green">
+                      <span>0%</span>
                       <div class="slice">
                         <div class="bar"></div>
                         <div class="fill"></div>
@@ -87,8 +90,8 @@
                       DOS
                   </div>
                   <div class="panel-body">
-                    <div class="c100 p25">
-                      <span>25%</span>
+                    <div class="c100 p0">
+                      <span>0%</span>
                       <div class="slice">
                         <div class="bar"></div>
                         <div class="fill"></div>
@@ -103,8 +106,8 @@
                       TRES
                   </div>
                   <div class="panel-body">
-                    <div class="c100 p25 green">
-                      <span>25%</span>
+                    <div class="c100 p0 green">
+                      <span>0%</span>
                       <div class="slice">
                         <div class="bar"></div>
                         <div class="fill"></div>
@@ -119,8 +122,8 @@
                       CUATRO
                   </div>
                   <div class="panel-body">
-                    <div class="c100 p25 ">
-                      <span>25%</span>
+                    <div class="c100 p0">
+                      <span>0%</span>
                       <div class="slice">
                         <div class="bar"></div>
                         <div class="fill"></div>
@@ -135,8 +138,8 @@
                       CINCO
                   </div>
                   <div class="panel-body">
-                    <div class="c100 p25 green">
-                      <span>25%</span>
+                    <div class="c100 p0 green">
+                      <span>0%</span>
                       <div class="slice">
                         <div class="bar"></div>
                         <div class="fill"></div>
@@ -148,11 +151,11 @@
             <div class="col-lg-3">
               <div class="panel panel-default">
                   <div class="panel-heading">
-                      SIETE
+                      SEIS
                   </div>
                   <div class="panel-body">
-                    <div class="c100 p25">
-                      <span>25%</span>
+                    <div class="c100 p0">
+                      <span>0%</span>
                       <div class="slice">
                         <div class="bar"></div>
                         <div class="fill"></div>
@@ -167,8 +170,8 @@
                       SIETE
                   </div>
                   <div class="panel-body">
-                    <div class="c100 p25 green">
-                      <span>25%</span>
+                    <div class="c100 p0 green">
+                      <span>0%</span>
                       <div class="slice">
                         <div class="bar"></div>
                         <div class="fill"></div>
@@ -183,8 +186,8 @@
                       OCHO
                   </div>
                   <div class="panel-body">
-                    <div class="c100 p25">
-                      <span>25%</span>
+                    <div class="c100 p0">
+                      <span>0%</span>
                       <div class="slice">
                         <div class="bar"></div>
                         <div class="fill"></div>
@@ -199,8 +202,8 @@
                       NUEVE
                   </div>
                   <div class="panel-body">
-                    <div class="c100 p25 green">
-                      <span>25%</span>
+                    <div class="c100 p0 green">
+                      <span>0%</span>
                       <div class="slice">
                         <div class="bar"></div>
                         <div class="fill"></div>
@@ -213,11 +216,6 @@
         </div>
       </div>
     </div>
-    <script type="text/javascript">
-      $(document).ready(function() {
-        prepareCanvas();
-      });
-    </script>
     <footer>
     </footer>
   </body>

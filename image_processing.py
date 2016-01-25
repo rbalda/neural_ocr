@@ -169,9 +169,6 @@ learning.view_image(ablob)
 # cv2.imshow("hello",img)
 # cv2.imshow("blob",blob)
 # cv2.waitKey()
-
-
-
 #
 #
 #
